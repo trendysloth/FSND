@@ -5,6 +5,27 @@
 	<div class="col-sm-6">
 		<h1 class="monospace">
 			{{ venue.name }}
+			<button class="delete-button" data-id="{{ venue.id }}">
+				&cross;
+			</button> -->
+			<script>
+				const deleteButtons = document.querySelectorAll('.delete-button');
+				for (let i = 0; i < deleteButtons.length; i++) {
+					const btn = deleteButtons[i];
+					// console.log(btn);
+					venueId = btn.dataset.id
+					// console.log(btn, venueId)
+					btn.onclick = function(e) {
+						// console.log(todoId);
+						fetch('/venues/' + venueId, {
+							method: 'DELETE',
+						})
+						// .then(function() {
+						//     document.getElementById('error').className = 'hidden';
+						// })
+					}
+				}
+			</script>
 		</h1>
 		<p class="subtitle">
 			ID: {{ venue.id }}
@@ -74,6 +95,7 @@
 		{% endfor %}
 	</div>
 </section>
-
 {% endblock %}
+
+
 
