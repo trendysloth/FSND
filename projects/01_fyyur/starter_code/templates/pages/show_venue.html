@@ -7,24 +7,19 @@
 			{{ venue.name }}
 			<button class="delete-button" data-id="{{ venue.id }}">
 				&cross;
-			</button> -->
+			</button>
 			<script>
-				const deleteButtons = document.querySelectorAll('.delete-button');
-				for (let i = 0; i < deleteButtons.length; i++) {
-					const btn = deleteButtons[i];
-					// console.log(btn);
-					venueId = btn.dataset.id
-					// console.log(btn, venueId)
-					btn.onclick = function(e) {
-						// console.log(todoId);
-						fetch('/venues/' + venueId, {
-							method: 'DELETE',
-						})
-						// .then(function() {
-						//     document.getElementById('error').className = 'hidden';
-						// })
-					}
-				}
+				const deleteBtn = document.querySelector('.delete-button');
+				deleteBtn.onclick = function (e) {
+				    fetch('/venues/' + deleteBtn.dataset.id, {
+				    	method: 'DELETE',
+				    })
+				    .then(
+						response => { 
+							window.location = "/venues/" + deleteBtn.dataset.id; 
+						}
+					)
+			  	}
 			</script>
 		</h1>
 		<p class="subtitle">
